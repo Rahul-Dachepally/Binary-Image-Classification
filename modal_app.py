@@ -30,10 +30,8 @@ async def predict(file: UploadFile = File(...)):
     model = get_model.remote()
     preds = model.predict(img_batch)
 
-    label = "Dog" if preds[0][0] > 0.5 else "Cat"
-    confidence = preds[0][0] if preds[0][0] > 0.5 else 1 - preds[0][0]
-
-    print(f"✅ Predicted Class: ({confidence:.2f})")
+    label = "Dog" if preds[0][0] >= 0.5 else "Cat"
+    confidence = preds[0][0] if preds[0][0] >= 0.5 else 1 - preds[0][0]
 
 
     return {"class": label}

@@ -16,7 +16,7 @@ if uploaded_file:
             if response.status_code == 200:
                 result = response.json()
                 class_id = result.get("class", None)
-                label = "Cat" if class_id == 0 else "Dog"
-                st.success(f"Predicted Class: {label} ({class_id})")
+                label = "cat" if class_id == 1 else "dog"
+                st.success(f"The predicted Image is : {class_id}")
             else:
                 st.error(f"Error: {response.status_code}")
